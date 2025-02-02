@@ -1,0 +1,43 @@
+name: deploy
+
+run-name: deploy version ${{ github.ref_name }}
+
+on: 
+    release: 
+        types: 
+            - published
+    workflow_dispatch: 
+
+concurrency:
+    cancel-in-progress: true
+    group: "deploy"
+
+jobs:    
+    deploy:
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+        permissions:
+            contents: read
+            id-token: write
+            pages: write
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Replace placeholders
+              run: >
+                  find src -type f -iname "*.html" -print0 | xargs -0 -L2 sed -i"" -e "s,%%vX.Y.Z%%,$GITHUB_REF_NAME,g"
+
+            - name: Setup pages
+              uses: actions/configure-pages@v5
+
+            - name: Upload artifact
+              uses: actions/upload-pages-artifact@v3
+              with:
+                  path: src/
+
+            - id: deployment
+              name: Deploy artifact
+              uses: actions/deploy-pages@v4

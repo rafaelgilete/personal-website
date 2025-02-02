@@ -118,14 +118,14 @@
         </div>
     </main>
     <footer>
-        <p>© <span class="year"></span> Made with ❤ in Spain.</p>
-        <p>I don't use cookies.</p>
+        <p>© <span class="year"></span>. Made with ❤ in Spain.</p>
+        <p>I don't use cookies. <span>%%vX.Y.Z%%</span>.</p>
     </footer>
     <script type="module">
         const $year = document.querySelector('.year');
 
         if ($year instanceof Element) {
-            $year.textContent = new Date().getFullYear().toString().concat('.');
+            $year.textContent = new Date().getFullYear().toString();
         }
     </script>
 </body>
