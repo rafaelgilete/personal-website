@@ -26,10 +26,12 @@
 <body>
     <header>
         <picture>
-            <source srcset="assets/images/portrait-144x144.webp, assets/images/portrait-288x288.webp 2x"
+            <source srcset="assets/images/portrait-200x200.avif, assets/images/portrait-400x400.avif 2x"
+                type="image/avif">
+            <source srcset="assets/images/portrait-200x200.webp, assets/images/portrait-400x400.webp 2x"
                 type="image/webp">
-            <img alt="Portrait" class="portrait" height="144px" src="assets/images/portrait-800x800.jpg"
-                srcset="assets/images/portrait-144x144.jpg, assets/images/portrait-288x288.jpg 2x" width="144px">
+            <img alt="Portrait" class="portrait" height="144px" src="assets/images/portrait-fallback-800x800.jpg"
+                srcset="assets/images/portrait-200x200.jpg, assets/images/portrait-400x400.jpg 2x" width="144px">
         </picture>
         <h1 class="heading">
             I'm Rafael, software engineer and indie maker from Madrid!
